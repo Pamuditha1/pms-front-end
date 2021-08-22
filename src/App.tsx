@@ -1,25 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import Header from "./components/Header/Header";
+import MainRoutes from "./routes/MainRoutes";
+import { createTheme, Theme, ThemeProvider } from "@material-ui/core";
 
-function App() {
+const theme: Theme = createTheme({
+  palette: {
+    primary: {
+      main: "#050A30",
+    },
+    secondary: {
+      main: "#444444",
+    },
+  },
+});
+
+function App(): JSX.Element {
+  useEffect(() => {
+    document.title = "Welkin Constructions";
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Header />
+      <MainRoutes />
+    </ThemeProvider>
   );
 }
 
